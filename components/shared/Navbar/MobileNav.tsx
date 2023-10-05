@@ -1,6 +1,5 @@
 import React from 'react'
 import Image from 'next/image'
-import { usePathname } from 'next/navigation'
 
 import {
   Sheet,
@@ -17,13 +16,9 @@ import { Button } from '@/components/ui/button'
 import { sidebarLinks } from '@/constants'
 
 const NavContent = () => {
-  const pathname = usePathname()
   return (
     <section className="flex h-full flex-col gap-6 pt-16">
       {sidebarLinks.map((item) => {
-        const isActive =
-          (pathname.includes(item.route) && item.route.length > 1) ||
-          pathname === item.route
         return (
           <SheetClose asChild key={item.route}>
             <Link href={item.route} className="">
@@ -33,7 +28,7 @@ const NavContent = () => {
                 width={20}
                 height={20}
               />
-              <p>{item.label}</p>
+              <p>{item.route}</p>
             </Link>
           </SheetClose>
         )
